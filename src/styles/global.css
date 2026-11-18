@@ -1,0 +1,351 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #347CF0;
+  --color-primary-accessible: #1855A5;
+  --color-on-primary: #0B1220;
+  --color-accent: #FFCA0A;
+  --color-accent-accessible: #805D00;
+  --color-navy: #1E293B;
+  --color-white: #FFFFFF;
+  --color-background: #F8FAFC;
+
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --spacing: 0.25rem;
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-down {
+  animation: fade-down 600ms ease-out both;
+}
+
+.animate-fade-up {
+  animation: fade-up 700ms ease-out both;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 900ms ease-out both;
+}
+
+.animation-duration-900 {
+  animation-duration: 900ms;
+}
+
+.animation-delay-150 {
+  animation-delay: 150ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-450 {
+  animation-delay: 450ms;
+}
+
+.hero-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgb(30 41 59 / 12%);
+}
+
+.hero-button:active {
+  transform: translateY(0);
+}
+
+@keyframes trust-ticker-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.trust-ticker-track {
+  animation: trust-ticker-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+.trust-bar-ticker:hover .trust-ticker-track {
+  animation-play-state: paused;
+}
+
+.trust-bar-ticker:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: -2px;
+}
+
+@media (min-width: 1024px) {
+  .trust-ticker-track {
+    animation: none;
+  }
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 350ms ease;
+  touch-action: pan-y;
+}
+
+.testimonial-slide {
+  min-width: 100%;
+}
+
+.about-content h2 {
+  color: var(--color-white);
+}
+
+#pricing-heading {
+  color: var(--color-white);
+}
+
+.about-image-wrap {
+  background-color: var(--color-primary);
+}
+
+.about-image {
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 0 90%);
+}
+
+.about-separator {
+  clip-path: polygon(0 90%, 100% 72%, 100% 82%, 0 100%);
+}
+
+@media (min-width: 900px) {
+  .about-image {
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  }
+
+  .about-separator {
+    clip-path: polygon(97% 0, 100% 0, 90% 100%, 87% 100%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-carousel {
+    overflow: visible;
+  }
+
+  .testimonial-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    transform: none !important;
+  }
+
+  .testimonial-slide {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .testimonial-meta {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .testimonial-rating {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+}
+
+.feature-card {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(var(--color-white), var(--color-white)) padding-box,
+    linear-gradient(135deg, var(--color-primary), var(--color-accent)) border-box;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    filter 200ms ease;
+}
+
+.feature-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    0 0 12px 1px rgb(52 124 240 / 24%),
+    0 0 18px 1px rgb(255 202 10 / 18%);
+  content: "";
+  pointer-events: none;
+  animation: feature-border-glow 4s ease-in-out infinite;
+}
+
+.feature-card:nth-child(2)::before {
+  animation-delay: 600ms;
+}
+
+.feature-card:nth-child(3)::before {
+  animation-delay: 1200ms;
+}
+
+.feature-card:hover {
+  filter:
+    drop-shadow(0 0 5px rgb(52 124 240 / 22%))
+    drop-shadow(0 0 7px rgb(255 202 10 / 18%));
+}
+
+@keyframes feature-border-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+:root {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  --font-size-page-title: clamp(32px, 3.4vw, 48px);
+  --font-size-section-title: clamp(24px, 2.3vw, 32px);
+  --font-size-card-title: clamp(18px, 1.55vw, 22px);
+  color: var(--color-navy);
+  background-color: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+main section[id] {
+  scroll-margin-top: 4.25rem;
+}
+
+@media (min-width: 1024px) {
+  main section[id] {
+    scroll-margin-top: 5.25rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--font-size-page-title);
+}
+
+h2 {
+  font-size: var(--font-size-section-title);
+}
+
+h3 {
+  font-size: var(--font-size-card-title);
+}
+
+.site-footer h2 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-down,
+  .animate-fade-up,
+  .animate-fade-in-right {
+    animation: none;
+  }
+
+  .navbar-link::after {
+    transition: none;
+  }
+
+  .hero-button {
+    transition: none;
+  }
+
+  .feature-card {
+    transition: none;
+  }
+
+  .feature-card::before {
+    animation: none;
+    opacity: 0.65;
+  }
+
+  .trust-ticker-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .trust-bar-ticker {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+}
